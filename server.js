@@ -2,12 +2,18 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const bodyParser = require('body-parser');
 
 //declare app as express
 const app = express();
 
 app.use(express.static("public"));
 app.use(express.json());
+// 4. define your middleware: request handling
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+
 
 //set up my main page at /
 app.get("/", (req, res) => {
