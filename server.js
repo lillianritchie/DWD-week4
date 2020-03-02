@@ -34,9 +34,16 @@ function getIngredients() {
 function addIngredient(ingredient) {
     const ingredients = getIngredients();
     //push updates to the original array
-    ingredients.fruit.push(ingredient);
+    console.log("consolelog 1: "+ ingredients.fruit);
+    //ingredients.fruit.push(ingredient.fruit);
+    //console.log(ingredients[0]); 
+    //console.log(ingredients[0][0]);
+    //ingredients[0].push(ingredient[0][0]);
+    console.log("consolelog 2: "+ ingredients.fruit);
+    
     fs.writeFileSync(path.join(__dirname, "./db/smoothie.json"), JSON.stringify(ingredients));
     return ingredients;
+
 }
 //funct to remove a fruit
 function deleteIngredient(ingredientToDelete) {
@@ -49,7 +56,9 @@ function deleteIngredient(ingredientToDelete) {
 
 //post addition to server
 app.post("/smoothie", (req, res) => {
+    console.log(req.body);
     const ingredient = req.body.ingredient;
+    console.log("ingredient = " + ingredient);
     const ingredients = addIngredient(ingredient);
     res.json(ingredients);
 })
