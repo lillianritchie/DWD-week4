@@ -46,7 +46,7 @@ function deleteIngredient(ingredientToDelete) {
     const ingredients = getIngredients();
     //filter does NOT change the original array
     ingredients.fruit = ingredients.fruit.filter(ingredient => ingredient !== ingredientToDelete);
-    fs.writeFileSync(path.join(_dirname, "./db/smoothie.json"), JSON.stringify(ingredients));
+    fs.writeFileSync(path.join(__dirname, "./db/smoothie.json"), JSON.stringify(ingredients));
     return ingredients;
 }
 //post addition to server

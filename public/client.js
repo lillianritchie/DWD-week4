@@ -14,7 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
       //prevent the page from refreshing on submission
       event.preventDefault();
       //look up the value that was submitted and save it to a value
-      const fruitInput = e.target.elements["fruit"];
+      const fruitInput = event.target.elements["fruit"];
       //save the string value to a new variable
       const fruit = fruitInput.value;
       //reset the input value
