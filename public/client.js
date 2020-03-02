@@ -33,7 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
   
-  //go through the array of toppings and return each topping as a list item with a remove button
+  //go through the array of toppings and return each fruit as a list item with a remove button
   function FruitsList(fruits) {
     return fruits.map((fruit) => {
       return `<li data-fruit="${fruit}">
@@ -43,7 +43,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }).join("");
   }
   
-  //Write a function called removeTopping, which accesses the topping by event.target.parentElement.dataset.topping
+  //Write a function called removeFruit, which accesses the fruit by event.target.parentElement.dataset.fruit
   function removeFruit(event) {
     const fruitsList = document.getElementById("fruits-list");
     //access data attributes using dataset
@@ -58,3 +58,5 @@ window.addEventListener("DOMContentLoaded", () => {
       fruitsList.innerHTML = FruitsList(data.fruit);
     });
   }
+  
+  

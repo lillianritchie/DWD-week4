@@ -1,7 +1,8 @@
 const fs = require('fs');
+const path = require('path');
 
 //save arrays in variables
-const contents = fs.readFileSync("./smoothie.json");
+const contents = fs.readFileSync(path.join(__dirname, "./db/smoothie.json"));
 const obj = JSON.parse(contents);
 const fruit = obj.fruit;
 const liquid = obj.liquid;
