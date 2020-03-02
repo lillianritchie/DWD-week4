@@ -19,17 +19,14 @@ app.use(bodyParser.urlencoded({
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public/index.html"));
 });
-
 //set up my ingredients page at /ingredients
 app.get("/ingredients", (req,res) => {
     res.sendFile(path.join(__dirname, "public/ingredients.html"));
 });
-
 app.get("/smoothie", (req,res) => {
     smoothie = getIngredients();
     res.json(smoothie);
 })
-
 //function to look up all fruit
 function getIngredients() {
     const contents = fs.readFileSync(path.join(__dirname, "./db/smoothie.json"));
@@ -40,16 +37,9 @@ function getIngredients() {
 function addIngredient(ingredient) {
     const ingredients = getIngredients();
     //push updates to the original array
-    console.log("consolelog 1: "+ ingredients.fruit);
-    //ingredients.fruit.push(ingredient.fruit);
-    //console.log(ingredients[0]); 
-    //console.log(ingredients[0][0]);
-    //ingredients[0].push(ingredient[0][0]);
-    console.log("consolelog 2: "+ ingredients.fruit);
-    
+    ingredients.fruit.push(ingredient);
     fs.writeFileSync(path.join(__dirname, "./db/smoothie.json"), JSON.stringify(ingredients));
     return ingredients;
-
 }
 //funct to remove a fruit
 function deleteIngredient(ingredientToDelete) {
@@ -59,25 +49,19 @@ function deleteIngredient(ingredientToDelete) {
     fs.writeFileSync(path.join(_dirname, "./db/smoothie.json"), JSON.stringify(ingredients));
     return ingredients;
 }
-
 //post addition to server
 app.post("/smoothie", (req, res) => {
-    console.log(req.body);
     const ingredient = req.body.ingredient;
-    console.log("ingredient = " + ingredient);
     const ingredients = addIngredient(ingredient);
     res.json(ingredients);
 })
-
 //delete fruit from the server
 app.delete("/smoothie/:name", (req, res) => {
     const ingredientToDelete = req.params.name;
     const ingredients = deleteIngredient(ingredientToDelete);
     res.json(ingredients);
 });
-
-
 //open the server on port 3000
 app.listen(3000, () => {
     console.log("Server is listening on port 3000!");
-})
+}) 
